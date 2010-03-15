@@ -16,6 +16,7 @@ import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
 import javafx.animation.Timeline;
 import javafx.animation.KeyFrame;
+import javafx.stage.Screen;
 
 public function run(args: String[]) {
     def themeName = if (sizeof args == 0) Theme.DEFAULT else args[0];
@@ -75,9 +76,13 @@ public function run(args: String[]) {
         }.play();
     }
 
+    def bounds = Screen.primary.bounds;
+
     def stage: Stage = Stage {
         fullScreen: true
         title: "ZenWriterFX"
+        width: bounds.width
+        height: bounds.height
         scene: scene = Scene {
             content: [
                 ImageView {
