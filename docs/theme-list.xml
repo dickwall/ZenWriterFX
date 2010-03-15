@@ -1,0 +1,35 @@
+<theme-list>
+	<theme>
+		<name>Blades</name>
+		<tag-list><tag>water</tag><tag>grass</tag></tag-list>
+		<bg-image>ZenWriter-BG005.JPG</bg-image>
+		<bg-color>ffffff</bg-color>
+		<bg-image-opacity>0.3</bg-image-opacity>
+		<bg-image-width>2048</bg-image-width><bg-image-height>1536</bg-image-height>
+		<surface-x></surface-x><surface-y></surface-y><surface-width></surface-width><surface-height></surface-height>
+		<controls-layout>vertical</controls-layout>
+		<controls-bg></controls-bg>
+	</theme>
+	<theme>
+		<name>Sky</name>
+		<tag-list><tag>sky</tag><tag>clouds</tag><tag>sunset</tag></tag-list>
+		<bg-image>ZenWriter-BG012.JPG</bg-image>
+		<bg-color>ffffff</bg-color>
+		<bg-image-opacity>0.3</bg-image-opacity>
+		<bg-image-width>2048</bg-image-width><bg-image-height>1536</bg-image-height>
+		<surface-x></surface-x><surface-y></surface-y><surface-width></surface-width><surface-height></surface-height>
+		<controls-layout>vertical</controls-layout>
+		<controls-bg></controls-bg>
+	</theme>
+	<theme>
+		<name>Lilly</name>
+		<tag-list><tag>water</tag><tag>clouds</tag><tag>lilly pads</tag></tag-list>
+		<bg-image>ZenWriter-BG023.JPG</bg-image>
+		<bg-color>ffffff</bg-color>
+		<bg-image-opacity>0.4</bg-image-opacity>
+		<bg-image-width>2048</bg-image-width><bg-image-height>1536</bg-image-height>
+		<surface-x></surface-x><surface-y></surface-y><surface-width></surface-width><surface-height></surface-height>
+		<controls-layout>vertical</controls-layout>
+		<controls-bg></controls-bg>
+	</theme>
+</theme-list>
