@@ -20,7 +20,7 @@ import javafx.scene.image.Image;
 var scene: Scene;
 
 Stage {
-    // fullScreen: true
+    fullScreen: true
     title: "ZenWriterFX"
     scene: scene = Scene {
         content: [
@@ -28,7 +28,7 @@ Stage {
                 opacity: 0.3
                 image: Image {
                     backgroundLoading: true
-                    url: "{__DIR__}WriterZen-BG001.JPG"
+                    url: "{__DIR__}images/backgrounds/WriterZen-BG002.JPG"
                 }
                 fitHeight: bind scene.height
                 fitWidth: bind scene.width
