@@ -30,3 +30,8 @@ public def DEFAULT = Theme {
     url: "{__DIR__}images/backgrounds/WriterZen-BG002.JPG"
     font: Font.font("American Typewriter", 32)
 }
+
+public def DICKS_THEME = Theme {
+    url: "{__DIR__}images/backgrounds/WriterZen-BG003.JPG"
+    font: Font.font("Rufscript", 24)
+}
