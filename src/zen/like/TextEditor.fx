@@ -15,7 +15,12 @@ import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
 import javax.swing.JTextPane;
 import java.io.File;
-import javafx.scene.input.KeyEvent;
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.OutputStreamWriter;
+import java.lang.StringBuilder;
 
 /**
  * @author dick
@@ -27,10 +32,23 @@ public class TextEditor {
     public var file: File;
     public function save(): Void {
         def s = textPane.getText();
-        println(s);
+        if (s != null) {
+            var output =
+                    new OutputStreamWriter(new FileOutputStream("foo.txt"), "UTF-8");
+            output.write(s.toString());
+            output.close();
+        }
     }
-    public function load(): Void {
 
+    public function load(): Void {
+        def input = new BufferedReader(new InputStreamReader(new FileInputStream("foo.txt"), "UTF-8"));
+        def sb = new StringBuilder();
+        var line : String;
+        while((line = input.readLine()) != null) {
+            sb.append(line).append("\n");
+        }
+        input.close();
+        textPane.setText(sb.toString());
     }
 }
 

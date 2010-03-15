@@ -22,8 +22,12 @@ public class Theme {
     public-init var backgroundImage: String;
     public-init var beginX = 0.1;
     public-init var beginY = 0.1;
-    public-init var endX = 0.9;
+    public-init var endX = 0.7;
     public-init var endY = 0.9;
+    public-init var panelX = 0.75;
+    public-init var panelY = 0.1;
+    public-init var panelWidth = 0.15;
+    public-init var panelHeight = 0.6;
     public-init var fill: Paint = Color.WHITE;
     public-init var textColor = Color.BLACK;
     public-init var selectionTextColor = Color.WHITE;
@@ -33,11 +37,11 @@ public class Theme {
     public-init var clickSound: String;
 
     public def clickSoundMediaView = MediaView {
-        mediaPlayer: MediaPlayer {
+        /*mediaPlayer: MediaPlayer {
             media: Media {
                 source: clickSound
             }
-        }
+        }*/
     }
 }
 
