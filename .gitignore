@@ -1,4 +1,5 @@
 .DS_Store
 *.class
-nbproject/private
-dist
+nbproject/private/*
+dist/*
+build/*
