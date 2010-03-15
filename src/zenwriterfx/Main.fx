@@ -20,7 +20,7 @@ import zen.like.MenuPanel;
 var scene: Scene;
 def theme = Theme.DEFAULT;
 def keyTyped = function(): Void {
-    theme.clickSoundMediaView.mediaPlayer.play();
+    theme.playClick();
 }
 def editor = TextEditor.create(theme.font, theme.textColor, theme.selectionColor, theme.selectionTextColor, keyTyped);
 def editorNode: SwingComponent = editor.node as SwingComponent;
@@ -41,7 +41,6 @@ var height: Number = bind stage.height on replace {
     menuPanel.y = height * theme.panelY;
     menuPanel.height = height * theme.panelHeight;
 };
-
 
 def stage: Stage = Stage {
     fullScreen: true

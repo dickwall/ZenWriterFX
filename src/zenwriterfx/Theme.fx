@@ -13,10 +13,6 @@ import javafx.scene.media.MediaView;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.Media;
 
-/**
- * @author tor
- */
-
 public class Theme {
     public-init var name: String;
     public-init var backgroundImage: String;
@@ -36,12 +32,23 @@ public class Theme {
     public-init var font: Font;
     public-init var clickSound: String;
 
-    public def clickSoundMediaView = MediaView {
-        /*mediaPlayer: MediaPlayer {
-            media: Media {
-                source: clickSound
+    public def clickMedia = {
+        def local = Utilities.makeLocal(clickSound);
+        Media {
+            onError: function(error) {
+                println("{error}");
             }
-        }*/
+            source: local
+        }
+    }
+
+    var mediaPlayer = MediaPlayer {
+        media: clickMedia
+    }
+
+    public function playClick() {
+        mediaPlayer.currentTime = 0s;
+        mediaPlayer.play();
     }
 }
 
