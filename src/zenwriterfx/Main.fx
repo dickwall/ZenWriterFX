@@ -12,6 +12,8 @@ import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
 import javafx.scene.image.ImageView;
 import javafx.scene.image.Image;
+import zen.like.TextEditor;
+import javafx.ext.swing.SwingComponent;
 
 /**
  * @author dick
@@ -34,13 +36,14 @@ Stage {
                 fitWidth: bind scene.width
             }
 
-            Text {
-                font: Font {
-                    size: 16
-                }
-                x: 10
-                y: 30
-                content: "Application content"
+            {
+                def editor = TextEditor.create() as SwingComponent;
+                editor.width = 500;
+                editor.height = 500;
+                editor.translateX = 50;
+                editor.translateY = 50;
+                
+                editor
             }
         ]
         fill: Color.WHITE
