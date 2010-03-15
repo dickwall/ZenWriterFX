@@ -17,6 +17,9 @@ import java.util.logging.Logger;
 public class Utilities {
     public static String makeLocal(String url) {
         try {
+            if (url == null || url.length() == 0) {
+                return null;
+            }
             String name = url.substring(url.lastIndexOf('/')+1);
             File tmpdir = new File(java.lang.System.getProperty("java.io.tmpdir"));
             File localFile = new File(tmpdir, name);

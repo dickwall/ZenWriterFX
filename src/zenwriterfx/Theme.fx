@@ -9,7 +9,6 @@ package zenwriterfx;
 import javafx.scene.paint.Paint;
 import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
-import javafx.scene.media.MediaView;
 import javafx.scene.media.MediaPlayer;
 import javafx.scene.media.Media;
 
@@ -34,11 +33,15 @@ public class Theme {
 
     public def clickMedia = {
         def local = Utilities.makeLocal(clickSound);
-        Media {
-            onError: function(error) {
-                println("{error}");
+        if (local != null) {
+            Media {
+                onError: function(error) {
+                    println("{error}");
+                }
+                source: local
             }
-            source: local
+        } else {
+            null
         }
     }
 
@@ -47,15 +50,18 @@ public class Theme {
     }
 
     public function playClick() {
-        mediaPlayer.currentTime = 0s;
-        mediaPlayer.play();
+        if (clickMedia != null) {
+            mediaPlayer.currentTime = 0s;
+            mediaPlayer.play();
+        }
     }
 }
 
 public def DEFAULT = Theme {
     name: "Test"
-    backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG002.JPG"
-    font: Font.font("American Typewriter", 32)
+    opacity: 0.5
+    backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG038.JPG"
+    font: Font.font("Helvetica", 24)
     clickSound: "{__DIR__}sounds/keyclick/typewriter-key.wav"
 }
 

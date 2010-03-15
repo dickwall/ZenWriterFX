@@ -11,7 +11,6 @@ public class Application {
     public-init var editor: TextEditor;
 
     public function exit() {
-        println("REFLECTION EXIT HANDLER CALLED!");
         editor.save();
     }
 }
