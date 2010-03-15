@@ -98,5 +98,4 @@ class KeyListener extends java.awt.event.KeyAdapter {
     override function keyPressed(e) {
         onKeyPressed()
     }
-
 }

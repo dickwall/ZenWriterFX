@@ -92,6 +92,21 @@ def themes: Theme[] = [
         font: Font.font("Rufscript", 24)
     },
     Theme {
+        name: "netbeans"
+        opacity: 0.8
+        backgroundImage: "{__DIR__}images/backgrounds/netbeans.png"
+        font: Font.font("Courier", 24)
+        clickSound: "{__DIR__}sounds/keyclick/typewriter-key.wav"
+        beginX: 0.27
+        beginY: 0.2
+        endX: 0.9
+        endY: 0.695
+        panelX: 0.9
+        panelY: 0.2
+        panelWidth: 0.1
+        panelHeight: 0.6
+    },
+    Theme {
         name: "Ugly"
         backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG002.JPG"
         font: Font.font("American Typewriter", 20)
