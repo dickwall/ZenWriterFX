@@ -12,6 +12,8 @@ import javafx.scene.image.Image;
 import zen.like.TextEditor;
 import javafx.ext.swing.SwingComponent;
 import zen.like.MenuPanel;
+import javafx.scene.media.Media;
+import javafx.scene.media.MediaPlayer;
 
 var scene: Scene;
 def theme = Theme.DEFAULT;
@@ -38,6 +40,19 @@ var height: Number = bind stage.height on replace {
     menuPanel.y = height * theme.panelY;
     menuPanel.height = height * theme.panelHeight;
 };
+
+def bgPlayer = MediaPlayer {
+    volume: 0.5
+    media: Media {
+        source: Utilities.makeLocal("{__DIR__}sounds/background/OceanWave.wav");
+    }
+    autoPlay: true
+    repeatCount: MediaPlayer.REPEAT_FOREVER
+    onError: function(e) {
+        println(e);
+    }
+}
+
 
 def stage: Stage = Stage {
     fullScreen: true
