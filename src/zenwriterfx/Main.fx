@@ -19,17 +19,17 @@ import javafx.ext.swing.SwingComponent;
 
 var scene: Scene;
 def theme = Theme.DEFAULT;
-var editor: SwingComponent = TextEditor.create(theme.font, theme.textColor, 
-    theme.selectionColor, theme.selectionTextColor) as SwingComponent;
-editor.focusTraversable = true;
+def editor = TextEditor.create(theme.font, theme.textColor, theme.selectionColor, theme.selectionTextColor);
+def editorNode: SwingComponent = editor.node as SwingComponent;
+editorNode.focusTraversable = true;
 
 var width: Number = bind stage.width on replace {
-    editor.width = width * (theme.endX - theme.beginX);
-    editor.translateX = width * theme.beginX;
+    editorNode.width = width * (theme.endX - theme.beginX);
+    editorNode.translateX = width * theme.beginX;
 };
 var height: Number = bind stage.height on replace {
-    editor.height = height * (theme.endY - theme.beginY);
-    editor.translateY = height * theme.beginY;
+    editorNode.height = height * (theme.endY - theme.beginY);
+    editorNode.translateY = height * theme.beginY;
 };
 
 def stage: Stage = Stage {
@@ -47,10 +47,10 @@ def stage: Stage = Stage {
                 fitHeight: bind height
             }
 
-            editor
+            editorNode
         ]
         fill: theme.fill
     }
 }
 
-editor.requestFocus();
+editorNode.requestFocus();

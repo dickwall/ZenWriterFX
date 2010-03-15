@@ -13,16 +13,24 @@ import javax.swing.border.EmptyBorder;
 import java.awt.Insets;
 import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
+import javax.swing.JTextPane;
+import java.io.File;
 
 /**
  * @author dick
  */
 
 public class TextEditor {
-//    public-read var node: Node;
-//    public function save(): Void {
-//
-//    }
+    public-read var node: Node;
+    public-read var textPane: JTextPane;
+    public var file: File;
+    public function save(): Void {
+        def s = textPane.getText();
+        println(s);
+    }
+    public function load(): Void {
+
+    }
 }
 
 function awtToFx(font: javafx.scene.text.Font): java.awt.Font {
@@ -34,7 +42,7 @@ function awtToFx(color: javafx.scene.paint.Color): java.awt.Color {
 }
 
 public function create(font: Font, textColor: Color, selectionColor: Color,
-        selectionTextColor: Color): Node {
+        selectionTextColor: Color): TextEditor {
     var textPane = new AntiAliasedTextArea();
 
     var scrollPane = new JScrollPane(textPane);
@@ -55,5 +63,5 @@ public function create(font: Font, textColor: Color, selectionColor: Color,
         textPane.requestFocus();
     });
     
-    text
+    TextEditor { node: text, textPane: textPane, file: new File("TheZenWriterFile.txt") }
 }
