@@ -16,6 +16,8 @@ import java.util.Random;
 public class Theme {
     public-init var name: String;
     public-init var backgroundImage: String;
+    public-init var backgroundAudio: String;
+    public-init var backgroundAudioVolume = 1.0;
     public-init var beginX = 0.1;
     public-init var beginY = 0.1;
     public-init var endX = 0.7;
@@ -83,6 +85,8 @@ def themes: Theme[] = [
         name: DEFAULT
         opacity: 0.5
         backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG038.JPG"
+        backgroundAudio: "{__DIR__}sounds/background/OceanWave.wav"
+        backgroundAudioVolume: 0.3
         font: Font.font("Helvetica", 24)
         clickSound: "{__DIR__}sounds/keyclick/typewriter-key.wav"
     },

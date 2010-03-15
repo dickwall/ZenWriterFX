@@ -14,6 +14,8 @@ import javafx.ext.swing.SwingComponent;
 import zen.like.MenuPanel;
 import javafx.scene.media.Media;
 import javafx.scene.media.MediaPlayer;
+import javafx.animation.Timeline;
+import javafx.animation.KeyFrame;
 
 public function run(args: String[]) {
     def themeName = if (sizeof args == 0) Theme.DEFAULT else args[0];
@@ -49,18 +51,29 @@ public function run(args: String[]) {
         menuPanel.height = height * theme.panelHeight;
     };
 
-    def bgPlayer = MediaPlayer {
-        volume: 0.5
-        media: Media {
-            source: Utilities.makeLocal("{__DIR__}sounds/background/OceanWave.wav");
-        }
-        autoPlay: true
-        repeatCount: MediaPlayer.REPEAT_FOREVER
-        onError: function(e) {
-            println(e);
-        }
+    if (theme.backgroundAudio != null) {
+        // Start a timeline to initialize audio AFTER everything
+        // else has come up
+        Timeline {
+            repeatCount: 1
+            keyFrames: KeyFrame {
+                time: 0.1s
+                action: function() {
+                    MediaPlayer {
+                        volume: theme.backgroundAudioVolume
+                        media: Media {
+                            source: Utilities.makeLocal(theme.backgroundAudio);
+                        }
+                        autoPlay: true
+                        repeatCount: MediaPlayer.REPEAT_FOREVER
+                        onError: function(e) {
+                            println(e);
+                        }
+                    }
+                }
+            }
+        }.play();
     }
-
 
     def stage: Stage = Stage {
         fullScreen: true
