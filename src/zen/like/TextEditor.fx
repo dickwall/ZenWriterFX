@@ -11,6 +11,7 @@ import javax.swing.JScrollPane;
 import javafx.ext.swing.SwingComponent;
 import javax.swing.border.EmptyBorder;
 import java.awt.Insets;
+import javafx.scene.text.Font;
 
 /**
  * @author dick
@@ -19,7 +20,7 @@ import java.awt.Insets;
 public class TextEditor {
 }
 
-public function create(): Node {
+public function create(font: Font): Node {
     var textPane = new AntiAliasedTextArea();
 
     var scrollPane = new JScrollPane(textPane);
@@ -29,7 +30,8 @@ public function create(): Node {
     textPane.setCaretColor(java.awt.Color.BLACK);
     scrollPane.setOpaque(false);
     scrollPane.setBorder(new EmptyBorder(new Insets(0,0,0,0)));
-    textPane.setFont(new java.awt.Font("American Typewriter", 0, 32));
+    def awtFont = font.impl_getNativeFont() as java.awt.Font;
+    textPane.setFont(awtFont);
 
     text
 }

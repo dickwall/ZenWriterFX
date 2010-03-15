@@ -20,31 +20,34 @@ import javafx.ext.swing.SwingComponent;
  */
 
 var scene: Scene;
+def theme = Theme.DEFAULT;
+var editor: SwingComponent = TextEditor.create(theme.font) as SwingComponent;
 
-Stage {
+var width: Number = bind stage.width on replace {
+    editor.width = width * (theme.endX - theme.beginX);
+    editor.translateX = width * theme.beginX;
+};
+var height: Number = bind stage.height on replace {
+    editor.height = height * (theme.endY - theme.beginY);
+    editor.translateY = height * theme.beginY;
+};
+
+def stage: Stage = Stage {
     fullScreen: true
     title: "ZenWriterFX"
     scene: scene = Scene {
         content: [
             ImageView {
-                opacity: 0.3
+                opacity: theme.opacity
                 image: Image {
                     backgroundLoading: true
-                    url: "{__DIR__}images/backgrounds/WriterZen-BG002.JPG"
+                    url: theme.url
                 }
-                fitHeight: bind scene.height
-                fitWidth: bind scene.width
+                fitWidth: bind width
+                fitHeight: bind height
             }
 
-            {
-                def editor = TextEditor.create() as SwingComponent;
-                editor.width = 500;
-                editor.height = 500;
-                editor.translateX = 50;
-                editor.translateY = 50;
-                
-                editor
-            }
+            editor
         ]
         fill: Color.WHITE
     }
