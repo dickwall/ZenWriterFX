@@ -19,7 +19,8 @@ import javafx.ext.swing.SwingComponent;
 
 var scene: Scene;
 def theme = Theme.DEFAULT;
-var editor: SwingComponent = TextEditor.create(theme.font) as SwingComponent;
+var editor: SwingComponent = TextEditor.create(theme.font, theme.textColor, 
+    theme.selectionColor, theme.selectionTextColor) as SwingComponent;
 editor.focusTraversable = true;
 
 var width: Number = bind stage.width on replace {
@@ -48,7 +49,7 @@ def stage: Stage = Stage {
 
             editor
         ]
-        fill: Color.WHITE
+        fill: theme.fill
     }
 }
 
