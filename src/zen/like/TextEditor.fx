@@ -21,10 +21,7 @@ import java.io.FileOutputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.lang.StringBuilder;
-
-/**
- * @author dick
- */
+import java.io.FileNotFoundException;
 
 public class TextEditor {
     public-read var node: Node;
@@ -40,15 +37,23 @@ public class TextEditor {
         }
     }
 
-    public function load(): Void {
-        def input = new BufferedReader(new InputStreamReader(new FileInputStream("foo.txt"), "UTF-8"));
-        def sb = new StringBuilder();
-        var line : String;
-        while((line = input.readLine()) != null) {
-            sb.append(line).append("\n");
+    public function load(ignore: Boolean): Void {
+        try {
+            def input = new BufferedReader(new InputStreamReader(new FileInputStream("foo.txt"), "UTF-8"));
+            def sb = new StringBuilder();
+            var line : String;
+            while((line = input.readLine()) != null) {
+                sb.append(line).append("\n");
+            }
+            input.close();
+            textPane.setText(sb.toString());
+        } catch (fnfe: FileNotFoundException) {
+            if (ignore) {
+                return;
+            } else {
+                throw fnfe;
+            }
         }
-        input.close();
-        textPane.setText(sb.toString());
     }
 }
 

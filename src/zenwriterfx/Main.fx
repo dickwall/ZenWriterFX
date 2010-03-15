@@ -13,10 +13,6 @@ import zen.like.TextEditor;
 import javafx.ext.swing.SwingComponent;
 import zen.like.MenuPanel;
 
-/**
- * @author dick
- */
-
 var scene: Scene;
 def theme = Theme.DEFAULT;
 def keyTyped = function(): Void {
@@ -24,6 +20,7 @@ def keyTyped = function(): Void {
 }
 def editor = TextEditor.create(theme.font, theme.textColor, theme.selectionColor, theme.selectionTextColor, keyTyped);
 def editorNode: SwingComponent = editor.node as SwingComponent;
+editor.load(true);
 
 def menuPanel = MenuPanel {};
 
@@ -65,3 +62,4 @@ def stage: Stage = Stage {
 }
 
 editorNode.requestFocus();
+Utilities.addShutdown(Application { editor: editor });
