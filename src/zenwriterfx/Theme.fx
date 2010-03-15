@@ -59,24 +59,45 @@ public class Theme {
     }
 }
 
-public def DEFAULT = Theme {
-    name: "Test"
-    opacity: 0.5
-    backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG038.JPG"
-    font: Font.font("Helvetica", 24)
-    clickSound: "{__DIR__}sounds/keyclick/typewriter-key.wav"
+public function getTheme(name: String) {
+    for (theme in themes) {
+        if (theme.name == name) {
+            return theme;
+        }
+    }
+
+    null
 }
 
-public def DICKS_THEME = Theme {
-    backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG003.JPG"
-    font: Font.font("Rufscript", 24)
+public def DEFAULT = "Default";
+
+public function getNames(): String[] {
+    for (theme in themes) {
+        "{theme.name}, "
+    }
 }
 
-public def UGLY = Theme {
-    backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG002.JPG"
-    font: Font.font("American Typewriter", 20)
-    textColor: Color.YELLOW
-    selectionColor: Color.RED
-    selectionTextColor: Color.GREEN
-    fill: Color.PURPLE
-}
+
+def themes: Theme[] = [
+    Theme {
+        name: DEFAULT
+        opacity: 0.5
+        backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG038.JPG"
+        font: Font.font("Helvetica", 24)
+        clickSound: "{__DIR__}sounds/keyclick/typewriter-key.wav"
+    },
+    Theme {
+        name: "Dick"
+        backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG003.JPG"
+        font: Font.font("Rufscript", 24)
+    },
+    Theme {
+        name: "Ugly"
+        backgroundImage: "{__DIR__}images/backgrounds/WriterZen-BG002.JPG"
+        font: Font.font("American Typewriter", 20)
+        textColor: Color.YELLOW
+        selectionColor: Color.RED
+        selectionTextColor: Color.GREEN
+        fill: Color.PURPLE
+    }
+];
