@@ -18,6 +18,10 @@ import javafx.scene.text.Font;
  */
 
 public class TextEditor {
+//    public-read var node: Node;
+//    public function save(): Void {
+//
+//    }
 }
 
 public function create(font: Font): Node {
@@ -32,6 +36,9 @@ public function create(font: Font): Node {
     scrollPane.setBorder(new EmptyBorder(new Insets(0,0,0,0)));
     def awtFont = font.impl_getNativeFont() as java.awt.Font;
     textPane.setFont(awtFont);
-
+    FX.deferAction(function() { // Ewwwww
+        textPane.requestFocus();
+    });
+    
     text
 }
