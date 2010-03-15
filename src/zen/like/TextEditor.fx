@@ -15,6 +15,7 @@ import javafx.scene.text.Font;
 import javafx.scene.paint.Color;
 import javax.swing.JTextPane;
 import java.io.File;
+import javafx.scene.input.KeyEvent;
 
 /**
  * @author dick
@@ -42,7 +43,7 @@ function awtToFx(color: javafx.scene.paint.Color): java.awt.Color {
 }
 
 public function create(font: Font, textColor: Color, selectionColor: Color,
-        selectionTextColor: Color): TextEditor {
+        selectionTextColor: Color, onKeyPressed: function(): Void): TextEditor {
     var textPane = new AntiAliasedTextArea();
 
     var scrollPane = new JScrollPane(textPane);
@@ -62,6 +63,17 @@ public function create(font: Font, textColor: Color, selectionColor: Color,
     FX.deferAction(function() { // Ewwwww
         textPane.requestFocus();
     });
+
+    def keyListener = KeyListener { onKeyPressed: onKeyPressed };
+    textPane.addKeyListener(keyListener);
     
     TextEditor { node: text, textPane: textPane, file: new File("TheZenWriterFile.txt") }
+}
+
+class KeyListener extends java.awt.event.KeyAdapter {
+    public-init var onKeyPressed: function(): Void;
+    override function keyPressed(e) {
+        onKeyPressed()
+    }
+
 }
