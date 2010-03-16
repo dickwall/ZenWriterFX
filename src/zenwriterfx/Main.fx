@@ -58,7 +58,7 @@ public function run(args: String[]) {
         Timeline {
             repeatCount: 1
             keyFrames: KeyFrame {
-                time: 0.1s
+                time: 0.3s
                 action: function() {
                     MediaPlayer {
                         volume: theme.backgroundAudioVolume
@@ -77,6 +77,37 @@ public function run(args: String[]) {
     }
 
     def bounds = Screen.primary.bounds;
+    def imageView =
+        ImageView {
+        opacity: 0
+        fitWidth: bind width
+        fitHeight: bind height
+    }
+
+    Timeline {
+        repeatCount: 1
+        keyFrames: [
+            KeyFrame {
+                time: 0.1s
+                action: function() {
+                    imageView.image = Image {
+                        backgroundLoading: false
+                        url: theme.backgroundImage
+                    }
+
+                    Timeline {
+                        repeatCount: 1
+                        keyFrames: [
+                            KeyFrame {
+                                time: 0.8s
+                                values: imageView.opacity => theme.opacity
+                            }
+                        ]
+                    }.play();
+                }
+            }
+        ]
+    }.play();
 
     def stage: Stage = Stage {
         fullScreen: true
@@ -85,16 +116,7 @@ public function run(args: String[]) {
         height: bounds.height
         scene: scene = Scene {
             content: [
-                ImageView {
-                    opacity: theme.opacity
-                    image: Image {
-                        backgroundLoading: true
-                        url: theme.backgroundImage
-                    }
-                    fitWidth: bind width
-                    fitHeight: bind height
-                }
-
+                imageView,
                 editorNode,
                 menuPanel
             ]
