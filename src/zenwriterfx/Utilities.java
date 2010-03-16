@@ -5,9 +5,12 @@
 
 package zenwriterfx;
 
+import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.net.URL;
@@ -47,6 +50,29 @@ public class Utilities {
             return null;
         }
     }
+
+    public static String read(InputStream inputStream) throws IOException {
+        BufferedReader input = new BufferedReader(new InputStreamReader(inputStream));
+        try {
+            StringBuilder sb = new StringBuilder();
+
+            while (true) {
+                int c = input.read();
+                if (c == -1) {
+                    break;
+                }
+                sb.append((char)c);
+            }
+            input.close();
+            input = null;
+            return sb.toString();
+        } finally {
+            if (input != null) {
+                input.close();
+            }
+        }
+    }
+
 
     public static void addShutdown(final Object instance) {
         Runtime.getRuntime().addShutdownHook(new Thread() {
